@@ -1,0 +1,169 @@
+{
+  "preset_info": {
+    "version": 14,
+    "title": "BlueProtocolDayNight",
+    "description": "",
+    "author": "Nal",
+    "width": 318,
+    "height": 326,
+    "features": "",
+    "release": 373314510,
+    "locked": false,
+    "pflags": 0
+  },
+  "preset_root": {
+    "internal_events": [
+      {
+        "action": "KUSTOM_ACTION"
+      }
+    ],
+    "internal_type": "RootLayerModule",
+    "globals_list": {
+      "c01": {
+        "index": 1,
+        "type": "COLOR",
+        "title": "c01",
+        "value": "#FFFFFFFF"
+      },
+      "c02": {
+        "index": 2,
+        "type": "COLOR",
+        "title": "c02",
+        "value": "#41000000"
+      }
+    },
+    "viewgroup_items": [
+      {
+        "internal_type": "ShapeModule",
+        "internal_title": "背景",
+        "internal_toggles": {
+          "paint_color": 100
+        },
+        "internal_globals": {
+          "paint_color": "c02"
+        },
+        "shape_type": "CIRCLE",
+        "shape_width": 200.0,
+        "paint_color": "#41000000"
+      },
+      {
+        "internal_type": "OverlapLayerModule",
+        "internal_title": "night",
+        "internal_toggles": {
+          "config_visible": 10
+        },
+        "internal_formulas": {
+          "config_visible": "$if(ai(isday)=1, NEVER, ALWAYS)$"
+        },
+        "viewgroup_items": [
+          {
+            "internal_type": "ShapeModule",
+            "internal_toggles": {
+              "fx_gradient_offset": 10,
+              "paint_color": 100
+            },
+            "internal_formulas": {
+              "fx_gradient_offset": "$if(dp(0) - dp(12h0m0s) > 0, tf(dp(0) - ai(sunset), S) / tf(ai(nsunrise) - ai(sunset), S) * 100, tf(dp(0) - ai(sunset, r1d), S) / tf(ai(sunrise) - ai(sunset, r1d), S) * 100)$"
+            },
+            "shape_type": "CIRCLE",
+            "shape_width": 180.0,
+            "fx_gradient": "SWEEP",
+            "fx_gradient_color": "#00000000",
+            "fx_gradient_width": 1,
+            "fx_gradient_offset": 21,
+            "internal_title": "メーター",
+            "internal_globals": {
+              "paint_color": "c01"
+            },
+            "shape_rotate_mode": "DEG180"
+          },
+          {
+            "internal_type": "ShapeModule",
+            "shape_type": "CIRCLE",
+            "shape_width": 165.0,
+            "paint_mode": "CLEAR",
+            "internal_title": "クリア"
+          },
+          {
+            "internal_type": "ShapeModule",
+            "internal_title": "内側",
+            "internal_toggles": {
+              "paint_color": 100
+            },
+            "internal_globals": {
+              "paint_color": "c02"
+            },
+            "shape_type": "CIRCLE",
+            "shape_width": 165.0,
+            "paint_color": "#41000000"
+          },
+          {
+            "internal_type": "BitmapModule",
+            "internal_title": "月",
+            "bitmap_bitmap": "kfile://org.kustom.provider/bitmaps/IMG9c86f6c2fd4bd716a94c623606db6924",
+            "bitmap_width": 180.0
+          }
+        ]
+      },
+      {
+        "internal_type": "OverlapLayerModule",
+        "internal_title": "day",
+        "internal_toggles": {
+          "config_visible": 10
+        },
+        "internal_formulas": {
+          "config_visible": "$if(ai(isday)=0, NEVER, ALWAYS)$"
+        },
+        "viewgroup_items": [
+          {
+            "internal_type": "ShapeModule",
+            "internal_toggles": {
+              "fx_gradient_offset": 10,
+              "paint_color": 100
+            },
+            "internal_formulas": {
+              "fx_gradient_offset": "$tf(dp(0) - ai(sunrise), S) / tf(dp(sunset) - ai(sunrise), S) * 100$"
+            },
+            "shape_type": "CIRCLE",
+            "shape_width": 180.0,
+            "fx_gradient": "SWEEP",
+            "fx_gradient_color": "#00000000",
+            "fx_gradient_width": 1,
+            "fx_gradient_offset": 21,
+            "internal_globals": {
+              "paint_color": "c01"
+            },
+            "internal_title": "メーター",
+            "shape_rotate_mode": "DEG180"
+          },
+          {
+            "internal_type": "ShapeModule",
+            "shape_type": "CIRCLE",
+            "shape_width": 165.0,
+            "paint_mode": "CLEAR",
+            "internal_title": "クリア"
+          },
+          {
+            "internal_type": "ShapeModule",
+            "internal_toggles": {
+              "paint_color": 100
+            },
+            "internal_globals": {
+              "paint_color": "c02"
+            },
+            "shape_type": "CIRCLE",
+            "shape_width": 165.0,
+            "paint_color": "#41000000",
+            "internal_title": "内側"
+          },
+          {
+            "internal_type": "BitmapModule",
+            "bitmap_bitmap": "kfile://org.kustom.provider/bitmaps/IMGa1bb9d4fe3bc1b90866df64e2e431f43",
+            "bitmap_width": 180.0,
+            "internal_title": "太陽"
+          }
+        ]
+      }
+    ]
+  }
+}
